@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://art/bellastanding.png" type="Texture" id=1]
-[ext_resource path="res://art/katiewalking.jpg" type="Texture" id=2]
+[ext_resource path="res://art/bellaleft.png" type="Texture" id=2]
 [ext_resource path="res://BellaBody2D.gd" type="Script" id=3]
 [ext_resource path="res://BellaCollisionShape2D.gd" type="Script" id=4]
 [ext_resource path="res://art/bellawalking.png" type="Texture" id=5]
+[ext_resource path="res://art/katiestanding - 1.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 372.298, 537.783 )
@@ -16,14 +17,27 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "walkingleft",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "walking",
+"name": "walkingright",
 "speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 1657.74
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Background" type="Node2D"]
 position = Vector2( 3, 1 )
@@ -41,6 +55,7 @@ script = ExtResource( 4 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="BellaBody2D"]
 frames = SubResource( 3 )
+animation = "walkingleft"
 
 [node name="Katie2" type="KinematicBody2D" parent="."]
 position = Vector2( 698, 483 )
@@ -50,6 +65,5 @@ scale = Vector2( 0.0717374, 0.0600728 )
 position = Vector2( 13.9395, 99.8774 )
 shape = SubResource( 2 )
 
-[node name="Katie" type="Sprite" parent="Katie2"]
-scale = Vector2( 1, 1 )
-texture = ExtResource( 2 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Katie2"]
+frames = SubResource( 4 )

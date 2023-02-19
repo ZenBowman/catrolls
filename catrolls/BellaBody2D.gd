@@ -15,10 +15,10 @@ func _process(delta):
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("ui_left"):
 		velocity -= Vector2.RIGHT
-		animated_sprite.play("walking")
+		animated_sprite.play("walkingleft")
 	elif Input.is_action_pressed("ui_right"):
 		velocity += Vector2.RIGHT
-		animated_sprite.play("walking")
+		animated_sprite.play("walkingright")
 	else:
 		animated_sprite.play("default")
 		animated_sprite.stop()
