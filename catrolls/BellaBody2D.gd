@@ -10,7 +10,6 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Make Bella rotate every frame.
 func _process(delta):
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("ui_left"):

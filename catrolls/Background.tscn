@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://art/bellastanding.png" type="Texture" id=1]
 [ext_resource path="res://art/bellaleft.png" type="Texture" id=2]
@@ -6,6 +6,24 @@
 [ext_resource path="res://BellaCollisionShape2D.gd" type="Script" id=4]
 [ext_resource path="res://art/bellawalking.png" type="Texture" id=5]
 [ext_resource path="res://art/katiestanding - 1.png" type="Texture" id=6]
+[ext_resource path="res://art/katiewalking.jpg" type="Texture" id=7]
+[ext_resource path="res://Katie2.gd" type="Script" id=8]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 1657.74
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "katiewalkingright",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 372.298, 537.783 )
@@ -28,38 +46,16 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 1657.74
-
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
 [node name="Background" type="Node2D"]
 position = Vector2( 3, 1 )
 
-[node name="BellaBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 109, 505 )
-scale = Vector2( 0.118185, 0.105061 )
-script = ExtResource( 3 )
-
-[node name="BellaCollisionShape2D" type="CollisionShape2D" parent="BellaBody2D"]
-position = Vector2( -0.00012207, 9.51758 )
-scale = Vector2( 1, 1 )
-shape = SubResource( 1 )
-script = ExtResource( 4 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="BellaBody2D"]
-frames = SubResource( 3 )
-animation = "walkingleft"
-
 [node name="Katie2" type="KinematicBody2D" parent="."]
-position = Vector2( 698, 483 )
+position = Vector2( 864, 469 )
 scale = Vector2( 0.0717374, 0.0600728 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Katie2"]
 position = Vector2( 13.9395, 99.8774 )
@@ -67,3 +63,21 @@ shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Katie2"]
 frames = SubResource( 4 )
+animation = "katiewalkingright"
+
+[node name="BellaBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 109, 505 )
+scale = Vector2( 0.118185, 0.105061 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="BellaCollisionShape2D" type="CollisionShape2D" parent="BellaBody2D"]
+position = Vector2( -0.00012207, 9.51758 )
+shape = SubResource( 1 )
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="BellaBody2D"]
+frames = SubResource( 3 )
+animation = "walkingleft"
