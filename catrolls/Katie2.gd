@@ -6,7 +6,7 @@ var speed = 350
 # var b = "text"
 
 onready var animated_sprite = $AnimatedSprite
-onready var left_button = $Button
+onready var left_button = $TouchScreenButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,13 +15,16 @@ func _ready():
 
 func _process(delta):
 	var velocity = Vector2.ZERO
-	if left_button.ACTION_MODE_BUTTON_PRESS:
-		velocity -= Vector2.RIGHT
-		animated_sprite.play("katiewalkingright")
-	elif Input.is_key_pressed(KEY_K):
-		velocity += Vector2.RIGHT
-		animated_sprite.play("katiewalkingright")
-	else:
-		animated_sprite.play("default")
-		animated_sprite.stop()
+	#if left_button.is:
+	#	velocity -= Vector2.RIGHT
+	#	animated_sprite.play("katiewalkingright")
+	#elif Input.is_key_pressed(KEY_K):
+	#	velocity += Vector2.RIGHT
+	#	animated_sprite.play("katiewalkingright")
+	#else:
+	#	animated_sprite.play("default")
+	#	animated_sprite.stop()
+	animated_sprite.play("default")
 	position += (speed * velocity) * delta
+	
+	
