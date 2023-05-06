@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Katie2.gd" type="Script" id=1]
 [ext_resource path="res://art/bellastandingtransparent.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://art/bellajumpingtransparent.png" type="Texture" id=10]
 [ext_resource path="res://art/roombackground.png" type="Texture" id=11]
 [ext_resource path="res://art/tilesheet_complete.png" type="Texture" id=12]
+[ext_resource path="res://BellaScene1.gd" type="Script" id=13]
 
 [sub_resource type="CanvasItemMaterial" id=7]
 
@@ -232,7 +233,8 @@ animations = [ {
 
 [node name="Background" type="Node2D"]
 material = SubResource( 7 )
-position = Vector2( 3, 1 )
+position = Vector2( 3, -1 )
+script = ExtResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 509, 193 )
@@ -284,3 +286,12 @@ script = ExtResource( 6 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="BellaBody2D"]
 frames = SubResource( 3 )
 animation = "jumping"
+
+[node name="Button" type="Button" parent="."]
+margin_left = -2.0
+margin_top = 1.0
+margin_right = 79.0
+margin_bottom = 30.0
+text = "Main menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

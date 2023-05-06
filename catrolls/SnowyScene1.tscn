@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://art/SnowyBasic.png" type="Texture" id=1]
+[ext_resource path="res://SnowyScene1.gd" type="Script" id=2]
+[ext_resource path="res://Snowy.gd" type="Script" id=3]
+[ext_resource path="res://art/snowyroombackground.PNG" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -14,8 +17,12 @@ animations = [ {
 extents = Vector2( 50.75, 46 )
 
 [node name="SnowyScene1" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Snowy" type="KinematicBody2D" parent="."]
+position = Vector2( 0, -100 )
+z_index = 1
+script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Snowy"]
 position = Vector2( 116, 490 )
@@ -25,3 +32,21 @@ frames = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Snowy"]
 position = Vector2( 118.25, 492 )
 shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 108.0
+margin_bottom = 135.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_right = 108.0
+margin_bottom = 20.0
+text = "Main menu"
+
+[node name="Snowyroombackground" type="Sprite" parent="."]
+position = Vector2( 510.875, 299.125 )
+scale = Vector2( 0.471412, 0.368981 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
