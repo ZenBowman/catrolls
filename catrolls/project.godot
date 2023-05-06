@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="catrolls"
-run/main_scene="res://Background.tscn"
+run/main_scene="res://ChooseYourCharacter.tscn"
 config/icon="res://icon.png"
 
 [display]
