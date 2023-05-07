@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://art/SnowyBasic.png" type="Texture" id=1]
 [ext_resource path="res://SnowyScene1.gd" type="Script" id=2]
 [ext_resource path="res://Snowy.gd" type="Script" id=3]
 [ext_resource path="res://art/snowyroombackground.PNG" type="Texture" id=4]
+[ext_resource path="res://art/snowydoor.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -15,6 +16,9 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 50.75, 46 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 76.75, 91.5 )
 
 [node name="SnowyScene1" type="Node2D"]
 script = ExtResource( 2 )
@@ -48,5 +52,16 @@ position = Vector2( 510.875, 299.125 )
 scale = Vector2( 0.471412, 0.368981 )
 z_index = -1
 texture = ExtResource( 4 )
+
+[node name="Door" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2( 941.25, 447.5 )
+shape = SubResource( 3 )
+
+[node name="Snowydoor" type="Sprite" parent="Door"]
+position = Vector2( 876.5, 433.5 )
+scale = Vector2( 0.67381, 0.714765 )
+texture = ExtResource( 5 )
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]

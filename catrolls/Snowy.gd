@@ -29,7 +29,8 @@ func _ready():
 	velocity = Vector2.DOWN
 
 func every_second():
-	print(position.y)
+	pass
+	#print(position.y)
 
 func clamp_to_screen(someposition: Vector2):
 	someposition.x = clamp(someposition.x, 0, screen_size.x-20)
