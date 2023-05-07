@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://art/katiestanding.png" type="Texture" id=1]
 [ext_resource path="res://art/bellawalkingleft.png" type="Texture" id=2]
 [ext_resource path="res://art/chooseyourcharacter2.png" type="Texture" id=3]
 [ext_resource path="res://art/SnowyBasic.png" type="Texture" id=4]
-[ext_resource path="res://ChooseYourCharacter.gd" type="Script" id=5]
+[ext_resource path="res://scripts/ChooseYourCharacter.gd" type="Script" id=5]
+[ext_resource path="res://art/femalesign.png" type="Texture" id=6]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -54,6 +55,24 @@ texture = ExtResource( 4 )
 position = Vector2( 600, 336 )
 scale = Vector2( 0.302284, 0.292243 )
 texture = ExtResource( 3 )
+
+[node name="Femalesign" type="Sprite" parent="."]
+position = Vector2( 321, 540 )
+scale = Vector2( 0.440476, 0.469799 )
+texture = ExtResource( 6 )
+offset = Vector2( -45.4054, -19.157 )
+
+[node name="Femalesign2" type="Sprite" parent="."]
+position = Vector2( 670, 544 )
+scale = Vector2( 0.440476, 0.469799 )
+texture = ExtResource( 6 )
+offset = Vector2( -45.4054, -19.157 )
+
+[node name="Femalesign3" type="Sprite" parent="."]
+position = Vector2( 1006, 538 )
+scale = Vector2( 0.440476, 0.469799 )
+texture = ExtResource( 6 )
+offset = Vector2( -45.4054, -19.157 )
 
 [connection signal="pressed" from="BellaButton" to="." method="_on_BellaButton_pressed"]
 [connection signal="pressed" from="SnowyButton" to="." method="_on_SnowyButton_pressed"]
