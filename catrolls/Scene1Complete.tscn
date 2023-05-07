@@ -31,3 +31,4 @@ rect_pivot_offset = Vector2( 174, 28 )
 text = "Continue to level 2"
 
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_MainMenuButton_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]

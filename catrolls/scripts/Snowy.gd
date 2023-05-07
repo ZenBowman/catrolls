@@ -18,13 +18,17 @@ var velocity: Vector2 = Vector2.ZERO
 var screen_size: Vector2
 var timer = null
 
+func maxy():
+	return screen_size.y-50
+
 func collided(obstacle: Area2D):
+	var obstaclepos = obstacle.find_node("CollisionShape2D").position
 	if (BellaState.JUMPING):
-		if position.y <= obstacle.position.y:
+		if position.y <= obstaclepos.y:
 			change_state_grounded()
 			on_obstacle = obstacle
 		else:
-			gravityspeed += 200
+			gravityspeed += 100
 	
 
 # Called when the node enters the scene tree for the first time.
@@ -47,7 +51,7 @@ func every_second():
 
 func clamp_to_screen(someposition: Vector2):
 	someposition.x = clamp(someposition.x, 0, screen_size.x-20)
-	someposition.y = clamp(someposition.y, -1600, 50)
+	someposition.y = clamp(someposition.y, 0, maxy())
 	return someposition
 
 func process_grounded(delta):
@@ -95,7 +99,7 @@ func process_jumping(delta):
 	gravityspeed += 3 	# gravity
 	position += ((gravityspeed * Vector2.DOWN) + (speed * velocity)) * delta
 	position = clamp_to_screen(position)
-	if (position.y >= 50):
+	if (position.y >= maxy()):
 		change_state_grounded()	
 
 func process_grooming(delta):

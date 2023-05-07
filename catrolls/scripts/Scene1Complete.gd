@@ -18,3 +18,7 @@ func _ready():
 
 func _on_MainMenuButton_pressed():
 	get_tree().change_scene("res://ChooseYourCharacter.tscn")
+
+
+func _on_Button2_pressed():
+	get_tree().change_scene("res://SnowyScene2.tscn")

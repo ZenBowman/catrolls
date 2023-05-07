@@ -22,6 +22,9 @@ func check_if_goal_reached():
 func _process(delta):
 	check_if_goal_reached()
 	check_collisions()
+	var obstaclepos = obstacle1.find_node("CollisionShape2D").position
+	$HeadsUpDisplay/CatPosition.text = "Cat position: " + str(cat.position.x).pad_decimals(2) + ", " + str(cat.position.y).pad_decimals(2)
+	$HeadsUpDisplay/ObstaclePosition.text = "Obstacle position: " + str(obstaclepos.x).pad_decimals(2) + ", " + str(obstaclepos.y).pad_decimals(2)
 	
 func check_collisions():
 	for obstacle in obstacles:
