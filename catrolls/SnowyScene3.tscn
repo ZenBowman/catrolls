@@ -1,0 +1,180 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://art/SnowyBasic.png" type="Texture" id=1]
+[ext_resource path="res://art/coyote1.png" type="Texture" id=2]
+[ext_resource path="res://art/mufasacloudleft.png" type="Texture" id=3]
+[ext_resource path="res://art/bush.png" type="Texture" id=4]
+[ext_resource path="res://art/Foresttrees.png" type="Texture" id=5]
+[ext_resource path="res://art/Scene3Background.png" type="Texture" id=6]
+[ext_resource path="res://art/nowheelsbluecar.png" type="Texture" id=7]
+[ext_resource path="res://art/snowy_groomingback.png" type="Texture" id=8]
+[ext_resource path="res://art/SnowyRunningRight.png" type="Texture" id=9]
+[ext_resource path="res://scripts/Snowy.gd" type="Script" id=10]
+[ext_resource path="res://art/SnowyGrooming.png" type="Texture" id=11]
+[ext_resource path="res://art/SnowyJumping.png" type="Texture" id=12]
+[ext_resource path="res://art/SnowyRunningLeft.png" type="Texture" id=13]
+[ext_resource path="res://art/bellastandingtransparent.png" type="Texture" id=14]
+[ext_resource path="res://art/OreoStanding.png" type="Texture" id=15]
+[ext_resource path="res://art/KenyaStanding.png" type="Texture" id=16]
+[ext_resource path="res://art/TomStanding.png" type="Texture" id=17]
+[ext_resource path="res://art/KikaStanding.png" type="Texture" id=18]
+[ext_resource path="res://art/katiestanding.png" type="Texture" id=19]
+[ext_resource path="res://art/katiewalking.png" type="Texture" id=20]
+[ext_resource path="res://art/snoywattack1.png" type="Texture" id=21]
+[ext_resource path="res://art/snowyattack2.png" type="Texture" id=22]
+[ext_resource path="res://SnowyScene3.gd" type="Script" id=23]
+[ext_resource path="res://art/Magicatpoop.png" type="Texture" id=24]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ) ],
+"loop": false,
+"name": "attacking",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "grooming",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "jumping",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "runningleft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "runningright",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 50.75, 46 )
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ) ],
+"loop": true,
+"name": "walkingright",
+"speed": 5.0
+} ]
+
+[node name="SnowyScene3" type="Node2D"]
+script = ExtResource( 23 )
+
+[node name="Scene3Background" type="Sprite" parent="."]
+position = Vector2( 515.864, 301.287 )
+scale = Vector2( 0.433429, 0.356636 )
+texture = ExtResource( 6 )
+
+[node name="Foresttrees" type="Sprite" parent="."]
+position = Vector2( 53, 372 )
+scale = Vector2( 0.281306, 0.257897 )
+texture = ExtResource( 5 )
+
+[node name="Coyote1" type="Sprite" parent="."]
+position = Vector2( 809, 472 )
+scale = Vector2( 0.678, 0.736527 )
+texture = ExtResource( 2 )
+offset = Vector2( -70.7965, 19.0082 )
+
+[node name="Coyote2" type="Sprite" parent="."]
+position = Vector2( 954, 468 )
+scale = Vector2( 0.678, 0.736527 )
+texture = ExtResource( 2 )
+offset = Vector2( -70.7965, 19.0082 )
+
+[node name="Mufasacloudleft" type="Sprite" parent="."]
+visible = false
+position = Vector2( 554.999, 221 )
+scale = Vector2( 0.308152, 0.312623 )
+texture = ExtResource( 3 )
+
+[node name="Bush" type="Sprite" parent="."]
+position = Vector2( 893, 508 )
+scale = Vector2( 0.765365, 0.782996 )
+texture = ExtResource( 4 )
+
+[node name="Bush3" type="Sprite" parent="."]
+position = Vector2( 728, 502 )
+scale = Vector2( 0.765365, 0.782996 )
+texture = ExtResource( 4 )
+
+[node name="Nowheelsbluecar" type="Sprite" parent="."]
+position = Vector2( 402, 497 )
+scale = Vector2( 0.504673, 0.576347 )
+texture = ExtResource( 7 )
+
+[node name="Snowy" type="KinematicBody2D" parent="."]
+position = Vector2( 64, 533 )
+scale = Vector2( 0.495728, 0.609091 )
+z_index = 1
+script = ExtResource( 10 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Snowy"]
+position = Vector2( -4.00012, 10.0001 )
+scale = Vector2( 0.4, 0.261765 )
+frames = SubResource( 1 )
+animation = "attacking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snowy"]
+position = Vector2( 0, 1 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="SnowySoundPlayer" type="AudioStreamPlayer2D" parent="Snowy"]
+
+[node name="OreoStanding" type="Sprite" parent="."]
+position = Vector2( 216, 522 )
+scale = Vector2( 0.459739, 0.367354 )
+texture = ExtResource( 15 )
+
+[node name="TomStanding" type="Sprite" parent="."]
+position = Vector2( 128.201, 529.428 )
+scale = Vector2( 0.259389, 0.176049 )
+texture = ExtResource( 17 )
+
+[node name="KenyaStanding" type="Sprite" parent="."]
+position = Vector2( 346, 530 )
+scale = Vector2( 0.18054, 0.112146 )
+texture = ExtResource( 16 )
+
+[node name="KikaStanding" type="Sprite" parent="."]
+position = Vector2( 507, 527 )
+scale = Vector2( 0.15614, 0.160285 )
+texture = ExtResource( 18 )
+
+[node name="Bellastandingtransparent" type="Sprite" parent="."]
+position = Vector2( 297, 535 )
+scale = Vector2( 0.0797277, 0.0755358 )
+texture = ExtResource( 14 )
+
+[node name="KatieStanding" type="AnimatedSprite" parent="."]
+position = Vector2( 421, 518 )
+scale = Vector2( 0.0419408, 0.0370589 )
+frames = SubResource( 3 )
+
+[node name="Bush2" type="Sprite" parent="."]
+position = Vector2( 1311.18, 881.149 )
+scale = Vector2( 0.585783, 0.613083 )
+texture = ExtResource( 4 )
+
+[node name="Magicatpoop" type="Sprite" parent="."]
+position = Vector2( 44, 565.001 )
+scale = Vector2( 0.0128209, 0.0115319 )
+texture = ExtResource( 24 )

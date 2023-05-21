@@ -4,19 +4,22 @@ var speed: int = 502
 var gravityspeed: int = 0
 var angular_speed: int = PI
 var groomtimer: float = 0.0
+var attacktimer: float = 0.0
 var on_obstacle: Area2D = null
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
 enum BellaState {
 	GROUNDED,
 	JUMPING,
-	GROOMING
+	GROOMING,
+	ATTACKING
 }
 
 var current_state = BellaState.JUMPING
 var velocity: Vector2 = Vector2.ZERO
 var screen_size: Vector2
 var timer = null
+var hiss = preload("res://sounds/hiss.mp3")
 
 func maxy():
 	return screen_size.y-50
@@ -76,6 +79,12 @@ func process_grounded(delta):
 		groomtimer = 0.0
 		current_state = BellaState.GROOMING
 		animated_sprite.play("grooming")
+	elif Input.is_action_pressed("ui_down"):
+		attacktimer = 0.0
+		current_state = BellaState.ATTACKING
+		animated_sprite.play("attacking")
+		$SnowySoundPlayer.stream = hiss
+		$SnowySoundPlayer.play()
 	else:
 		velocity = Vector2.ZERO
 		animated_sprite.play("default")
@@ -108,6 +117,15 @@ func process_grooming(delta):
 		animated_sprite.play("default")
 		current_state = BellaState.GROUNDED
 		groomtimer = 0.0
+		
+func process_attacking(delta):
+	attacktimer += delta
+	if (attacktimer > 2.0):
+		$SnowySoundPlayer.stop()
+		animated_sprite.play("default")
+		current_state = BellaState.GROUNDED
+		attacktimer = 0.0
+		
 
 func _process(delta):
 	if (current_state == BellaState.GROUNDED):
@@ -116,3 +134,5 @@ func _process(delta):
 		process_jumping(delta)
 	elif (current_state == BellaState.GROOMING):
 		process_grooming(delta)
+	elif (current_state == BellaState.ATTACKING):
+		process_attacking(delta)
