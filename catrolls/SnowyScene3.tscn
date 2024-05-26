@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://art/SnowyBasic.png" type="Texture" id=1]
 [ext_resource path="res://art/coyote1.png" type="Texture" id=2]
@@ -24,6 +24,16 @@
 [ext_resource path="res://art/snowyattack2.png" type="Texture" id=22]
 [ext_resource path="res://SnowyScene3.gd" type="Script" id=23]
 [ext_resource path="res://art/Magicatpoop.png" type="Texture" id=24]
+[ext_resource path="res://art/deadcoyote.png" type="Texture" id=25]
+
+[sub_resource type="CanvasItemMaterial" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.945098, 0.403922, 0.721569, 1 )
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 74.0
+height = 50.0
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -74,7 +84,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 191.191, 160.219 )
+
 [node name="SnowyScene3" type="Node2D"]
+position = Vector2( -1, 0 )
 script = ExtResource( 23 )
 
 [node name="Scene3Background" type="Sprite" parent="."]
@@ -87,14 +101,38 @@ position = Vector2( 53, 372 )
 scale = Vector2( 0.281306, 0.257897 )
 texture = ExtResource( 5 )
 
-[node name="Coyote1" type="Sprite" parent="."]
+[node name="Coyote1" type="KinematicBody2D" parent="."]
 position = Vector2( 809, 472 )
+z_index = 3
+
+[node name="Coyote1" type="Sprite" parent="Coyote1"]
 scale = Vector2( 0.678, 0.736527 )
 texture = ExtResource( 2 )
 offset = Vector2( -70.7965, 19.0082 )
 
+[node name="ProgressBar" type="ProgressBar" parent="Coyote1/Coyote1"]
+material = SubResource( 6 )
+margin_left = 76.6962
+margin_top = -624.553
+margin_right = 227.696
+margin_bottom = -590.553
+custom_styles/fg = SubResource( 7 )
+step = 1.0
+value = 100.0
+
+[node name="Label" type="Label" parent="Coyote1/Coyote1/ProgressBar"]
+margin_left = -97.0
+margin_top = 3.0
+margin_right = -5.0
+margin_bottom = 17.0
+text = "Coyote health:"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Coyote1"]
+position = Vector2( -65, 16 )
+shape = SubResource( 4 )
+
 [node name="Coyote2" type="Sprite" parent="."]
-position = Vector2( 954, 468 )
+position = Vector2( 956, 473 )
 scale = Vector2( 0.678, 0.736527 )
 texture = ExtResource( 2 )
 offset = Vector2( -70.7965, 19.0082 )
@@ -108,11 +146,13 @@ texture = ExtResource( 3 )
 [node name="Bush" type="Sprite" parent="."]
 position = Vector2( 893, 508 )
 scale = Vector2( 0.765365, 0.782996 )
+z_index = 5
 texture = ExtResource( 4 )
 
 [node name="Bush3" type="Sprite" parent="."]
 position = Vector2( 728, 502 )
 scale = Vector2( 0.765365, 0.782996 )
+z_index = 5
 texture = ExtResource( 4 )
 
 [node name="Nowheelsbluecar" type="Sprite" parent="."]
@@ -172,9 +212,26 @@ frames = SubResource( 3 )
 [node name="Bush2" type="Sprite" parent="."]
 position = Vector2( 1311.18, 881.149 )
 scale = Vector2( 0.585783, 0.613083 )
+z_index = 5
 texture = ExtResource( 4 )
 
 [node name="Magicatpoop" type="Sprite" parent="."]
+visible = false
 position = Vector2( 44, 565.001 )
 scale = Vector2( 0.0128209, 0.0115319 )
 texture = ExtResource( 24 )
+
+[node name="CoyoteTrigger" type="Area2D" parent="."]
+position = Vector2( 515.864, 301.287 )
+scale = Vector2( 0.433429, 0.356636 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoyoteTrigger"]
+position = Vector2( 46.1516, 565.599 )
+shape = SubResource( 5 )
+
+[node name="Deadcoyote" type="Sprite" parent="."]
+position = Vector2( 1379, 635 )
+scale = Vector2( 0.610667, 0.48 )
+texture = ExtResource( 25 )
+
+[connection signal="snowy_attack" from="Snowy" to="." method="_on_Snowy_snowy_attack"]

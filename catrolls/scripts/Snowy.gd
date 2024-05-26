@@ -8,6 +8,8 @@ var attacktimer: float = 0.0
 var on_obstacle: Area2D = null
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
+signal snowy_attack
+
 enum BellaState {
 	GROUNDED,
 	JUMPING,
@@ -120,6 +122,8 @@ func process_grooming(delta):
 		
 func process_attacking(delta):
 	attacktimer += delta
+	if (attacktimer < 0.1):
+		emit_signal("snowy_attack")
 	if (attacktimer > 2.0):
 		$SnowySoundPlayer.stop()
 		animated_sprite.play("default")
