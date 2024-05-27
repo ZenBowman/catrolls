@@ -43,6 +43,8 @@ func process_coyotefight(delta):
 
 func process_coyote2fight(delta):
 	coyote2.position.x = coyote2.position.move_toward(kitten.position, delta * coyotespeed).x
+	if abs(kitten.position.x - get_viewport_rect().size.x) < 100:
+		get_tree().change_scene("res://ChooseYourCharacter.tscn")
 
 func process_pooped(delta):
 	if (coyoteTrigger.get_overlapping_bodies().find(kitten) != -1):
