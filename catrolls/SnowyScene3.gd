@@ -13,6 +13,7 @@ onready var coyote1Collision = $Coyote1/Area2D
 
 onready var coyote2 = $Coyote2
 onready var coyoteTrigger = $CoyoteTrigger
+onready var coyote2ProgressBar = $Coyote2/Coyote2/ProgressBar
 
 signal coyote1_dead
 
@@ -34,8 +35,14 @@ func _ready():
 	sb.bg_color = Color("ff0000")
 	pass # Replace with function body.
 
+func target_kitten_position():
+	return Vector2(kitten.position.x + 100, kitten.position.y)
+
 func process_coyotefight(delta):
-	coyote1.position.x = coyote1.position.move_toward(kitten.position, delta * coyotespeed).x
+	coyote1.position.x = coyote1.position.move_toward(target_kitten_position(), delta * coyotespeed).x
+
+func process_coyote2fight(delta):
+	coyote2.position.x = coyote2.position.move_toward(kitten.position, delta * coyotespeed).x
 
 func process_pooped(delta):
 	if (coyoteTrigger.get_overlapping_bodies().find(kitten) != -1):
@@ -59,6 +66,8 @@ func _process(delta):
 		process_pooped(delta)
 	elif state == SceneState.COYOTE_FIGHT:
 		process_coyotefight(delta)
+	elif state == SceneState.COYOTE2_FIGHT:
+		process_coyote2fight(delta)
 
 
 func _on_Snowy_snowy_attack():
